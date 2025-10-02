@@ -73,13 +73,6 @@ f_V = 1 - (0.0054545 × R_v + 0.0003) × (50 - V)
 TT' = TT × min(f_D, f_V)
 ```
 
-## 참고문헌
-
-이 모델은 APSIM-Wheat 모델의 생육단계 예측 알고리즘을 기반으로 합니다:
-
-- Brown, H.E., Huth, N.I., Holzworth, D.P., Teixeira, E.I., Zyskowski, R.F., Hargreaves, J.N.G., & Moot, D.J. (2014). Plant Modelling Framework: Software for building and running crop models on the APSIM platform. *Environmental Modelling & Software*, 62, 385-398.
-
-
 ## 라이선스
 
 이 프로젝트는 교육 및 연구 목적으로 사용할 수 있습니다.
