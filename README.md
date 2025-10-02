@@ -1,0 +1,89 @@
+# APSIM 밀 생육단계 예측 모델
+
+**📄 관련 논문**: 본 연구의 상세한 내용을 담은 논문이 곧 학술지에 게재될 예정입니다.
+
+## 🌐 웹 애플리케이션
+
+**배포된 Streamlit 앱**: [https://kwheatphenology.streamlit.app/](https://kwheatphenology.streamlit.app/)
+
+
+## 프로젝트 개요
+
+이 프로젝트는 APSIM (Agricultural Production Systems sIMulator) 모델을 기반으로 한국의 기상 데이터를 활용하여 밀의 생육단계를 예측하는 시뮬레이션 시스템입니다. 일별 기온 데이터를 바탕으로 적산온도(Thermal Time), 춘화(Vernalisation), 일장(Photoperiod) 효과를 계산하여 밀의 주요 생육단계를 추정합니다.
+
+## 주요 기능
+
+### 적산온도 및 환경 요인 계산
+- **춘화 효과(Vernalisation)**: 저온 노출에 의한 생육 촉진 효과 계산
+- **탈춘화(Devernalisation)**: 고온에 의한 춘화 효과 감소 계산
+- **일장 효과(Photoperiod)**: 일장 변화가 밀 생육에 미치는 영향 계산
+- **Crown 온도**: 적설량을 고려한 생장점 온도 추정
+- **일별 적산온도**: 0-34°C 범위에서의 유효 적산온도 계산
+
+### 생육단계 예측
+다음 주요 생육단계를 예측합니다:
+- **출아기(Emergence)**: 종자 발아 후 지상 출현
+- **유묘기 종료(End of Juvenile)**: 초기 생장기 완료
+- **화아분화기(Floral Initiation)**: 이삭 형성 시작
+- **개화기(Flowering)**: 꽃 피는 시기
+- **출수기(Heading)**: 이삭이 완전히 출현
+- **등숙기 종료(End of Grain Fill)**: 낟알 성숙 완료
+- **성숙기(Maturity)**: 수확 가능 시기
+
+## 입력 데이터
+
+일별 기상 데이터 (CSV 형식):
+- 일최고/최저기온 (°C)
+- 일사량, 강수량, 일장
+
+
+## 출력 데이터
+
+모델은 다음 정보를 포함한 CSV 파일을 생성합니다:
+
+- 일별 기상 데이터 (최고/최저 기온)
+- 일장 및 광주기 효과 계수
+- Crown 온도
+- 춘화 누적량 및 춘화 효과 계수
+- 일별/누적 적산온도
+- 각 생육단계 도달 일자 (일련번호)
+- TT_prime (광주기 및 춘화 효과가 반영된 적산온도)
+
+## 모델 이론적 배경
+
+### 적산온도 계산
+```
+- 0 < T_c ≤ 26°C: TT = T_c
+- 26 < T_c ≤ 34°C: TT = (34 - T_c) × 26 / 8
+- T_c > 34°C: TT = 0
+```
+
+### 광주기 효과
+```
+f_D = 1 - 0.002 × R_p × (20 - L_p)²
+```
+
+### 춘화 효과
+```
+f_V = 1 - (0.0054545 × R_v + 0.0003) × (50 - V)
+```
+
+### 유효 적산온도
+```
+TT' = TT × min(f_D, f_V)
+```
+
+## 참고문헌
+
+이 모델은 APSIM-Wheat 모델의 생육단계 예측 알고리즘을 기반으로 합니다:
+
+- Brown, H.E., Huth, N.I., Holzworth, D.P., Teixeira, E.I., Zyskowski, R.F., Hargreaves, J.N.G., & Moot, D.J. (2014). Plant Modelling Framework: Software for building and running crop models on the APSIM platform. *Environmental Modelling & Software*, 62, 385-398.
+
+
+## 라이선스
+
+이 프로젝트는 교육 및 연구 목적으로 사용할 수 있습니다.
+
+## 문의
+
+프로젝트에 대한 문의사항이나 개선 제안은 GitHub Issues를 통해 남겨주시기 바랍니다.
