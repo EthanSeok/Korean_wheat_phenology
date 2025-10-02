@@ -11,6 +11,8 @@
 
 이 프로젝트는 APSIM (Agricultural Production Systems sIMulator) 모델을 기반으로 한국의 기상 데이터를 활용하여 밀의 생육단계를 예측하는 시뮬레이션 시스템입니다. 일별 기온 데이터를 바탕으로 적산온도(Thermal Time), 춘화(Vernalisation), 일장(Photoperiod) 효과를 계산하여 밀의 주요 생육단계를 추정합니다.
 
+본 모델은 **한국 밀 품종(조광, 조경, 금강, 우리밀)별 특성을 반영**하여 검보정(calibration and validation)되었으며, 국내 재배 환경에 최적화된 생육단계 예측을 제공합니다.
+
 ## 주요 기능
 
 ### 적산온도 및 환경 요인 계산
